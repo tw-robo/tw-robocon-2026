@@ -26,6 +26,7 @@
     position:fixed; inset:0; z-index:9999;
     background:var(--bg);
     display:flex; align-items:center; justify-content:center; flex-direction:column;
+    cursor:pointer;
   }
   #intro canvas { position:absolute; inset:0; }
   #intro-text {
@@ -686,7 +687,31 @@
 // ── INTRO ──
 (function(){
   const c = document.getElementById('introCanvas'), ctx = c.getContext('2d');
+  const introEl = document.getElementById('intro');
   let W, H, pts = [], raf;
+  let isClosing = false;
+  let autoCloseTimer;
+  let touchStartY = null;
+  function onWheel(e){ if(e.deltaY > 0) closeIntro(); }
+  function onTouchStart(e){
+    if(!e.touches || !e.touches.length) return;
+    touchStartY = e.touches[0].clientY;
+  }
+  function onTouchMove(e){
+    if(touchStartY === null || !e.touches || !e.touches.length) return;
+    const deltaY = touchStartY - e.touches[0].clientY;
+    if(deltaY > 12) closeIntro();
+  }
+  function addPullDownSkipListeners(){
+    window.addEventListener('wheel', onWheel, { passive:true });
+    introEl.addEventListener('touchstart', onTouchStart, { passive:true });
+    introEl.addEventListener('touchmove', onTouchMove, { passive:true });
+  }
+  function removePullDownSkipListeners(){
+    window.removeEventListener('wheel', onWheel);
+    introEl.removeEventListener('touchstart', onTouchStart);
+    introEl.removeEventListener('touchmove', onTouchMove);
+  }
   function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
   resize(); window.addEventListener('resize', resize);
   for(let i=0;i<200;i++){
@@ -710,12 +735,25 @@
     ctx.globalAlpha=1; ctx.shadowBlur=0;
     raf=requestAnimationFrame(draw);
   }
+  function closeIntro(){
+    const fadeOutMS = 400;
+    if(isClosing) return;
+    isClosing = true;
+    clearTimeout(autoCloseTimer);
+    removePullDownSkipListeners();
+    introEl.removeEventListener('click', closeIntro);
+    introEl.style.transition='opacity 0.8s';
+    introEl.style.opacity='0';
+    setTimeout(()=>{
+      introEl.style.display='none';
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+    },fadeOutMS);
+  }
   draw();
-  setTimeout(()=>{
-    const el=document.getElementById('intro');
-    el.style.transition='opacity 0.8s'; el.style.opacity='0';
-    setTimeout(()=>{ el.style.display='none'; cancelAnimationFrame(raf); },800);
-  },3200);
+  introEl.addEventListener('click', closeIntro);
+  addPullDownSkipListeners();
+  autoCloseTimer = setTimeout(closeIntro,3200);
 })();
 
 // ── HERO BG ──
