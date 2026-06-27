@@ -270,6 +270,58 @@
     color:rgba(200,232,255,0.8);
   }
 
+  /* ── STAFF ── */
+  #staff { background:linear-gradient(180deg,var(--dark2) 0%,#031226 100%); }
+  .staff-sheet {
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:18px;
+  }
+  .staff-sheet-toggle {
+    width:100%;
+    border:1px solid var(--green);
+    background:rgba(0,255,136,.06);
+    color:var(--green);
+    font-family:'Share Tech Mono',monospace;
+    letter-spacing:2px;
+    font-size:12px;
+    padding:10px 14px;
+    cursor:pointer;
+    text-align:left;
+  }
+  .staff-sheet-body {
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .45s ease, padding-top .35s ease;
+    padding-top:0;
+  }
+  .staff-sheet.expanded .staff-sheet-body {
+    max-height:700px;
+    padding-top:16px;
+  }
+  .staff-table {
+    width:100%;
+    border-collapse:collapse;
+    border:1px solid var(--border);
+    background:rgba(2,13,26,.55);
+  }
+  .staff-table th,
+  .staff-table td {
+    border:1px solid var(--border);
+    padding:10px 12px;
+    text-align:left;
+    font-size:14px;
+    color:#e8f4ff;
+    line-height:1.7;
+    vertical-align:top;
+  }
+  .staff-table th {
+    font-family:'Share Tech Mono',monospace;
+    letter-spacing:1px;
+    color:var(--green);
+    background:rgba(0,255,136,.06);
+  }
+
   /* ── FOOTER ── */
   footer {
     padding:36px clamp(20px,8%,120px);
@@ -310,6 +362,7 @@
   <ul class="nav-links">
     <li><a href="#cfp">徵稿</a></li>
     <li><a href="#sponsors">贊助</a></li>
+    <li><a href="#staff" id="staff-nav-link">Staff</a></li>
     <li><a href="#register"><span style="color:var(--green)">立即報名</span></a></li>
   </ul>
 </nav>
@@ -699,6 +752,46 @@
   </div>
 </section>
 
+<section id="staff">
+  <div class="reveal">
+    <div class="section-tag">// STAFF</div>
+    <h2 class="section-title">工作人員</h2>
+  </div>
+  <div class="staff-sheet reveal" id="staff-sheet">
+    <button class="staff-sheet-toggle" id="staff-sheet-toggle" type="button" aria-expanded="false">
+      展開Staff名單
+    </button>
+    <div class="staff-sheet-body" id="staff-sheet-body">
+      <table class="staff-table">
+        <thead>
+          <tr>
+            <th>成員</th>
+            <th>Contribute</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wen-Yu（文昱）</td>
+            <td>主辦人, 主持人, 接待, 贊助接洽</td>
+          </tr>
+          <tr>
+            <td>YiZhong</td>
+            <td>贊助 Follow-up</td>
+          </tr>
+          <tr>
+            <td>Juien</td>
+            <td>網頁架設</td>
+          </tr>
+          <tr>
+            <td>robotman</td>
+            <td>網頁架設</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="logo">台灣機器人社群 · TRC 2026</div>
   <p>2026.08.22 · 南港展覽館一館</p>
@@ -819,6 +912,31 @@
 (function(){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('revealed'); }),{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+
+// ── STAFF SHEET ──
+(function(){
+  const sheet = document.getElementById('staff-sheet');
+  const toggle = document.getElementById('staff-sheet-toggle');
+  const navLink = document.getElementById('staff-nav-link');
+  if(!sheet || !toggle) return;
+
+  function setExpanded(expanded){
+    sheet.classList.toggle('expanded', expanded);
+    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    toggle.textContent = expanded ? '收合Staff名單' : '展開Staff名單';
+  }
+
+  setExpanded(false);
+  toggle.addEventListener('click', function(){
+    setExpanded(!sheet.classList.contains('expanded'));
+  });
+
+  if(navLink){
+    navLink.addEventListener('click', function(){
+      setExpanded(true);
+    });
+  }
 })();
 </script>
 </body>
