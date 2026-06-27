@@ -178,6 +178,7 @@
   }
   #register::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,255,136,.07) 0%,transparent 70%); }
   .reg-box { position:relative; z-index:1; max-width:560px; margin:0 auto; }
+  #register .section-title::after { margin-left:auto; margin-right:auto; }
   .reg-box p { color:rgba(200,232,255,0.6); margin-bottom:28px; line-height:1.9; font-size:clamp(13px,1.4vw,15px); }
   .deadline-badge {
     display:inline-block; background:rgba(0,255,136,.08); border:1px solid var(--green);
@@ -235,22 +236,24 @@
     transition:border-color .3s,color .3s; min-width:130px;
   }
   .sponsor-logo:hover { border-color:var(--green); color:var(--green); }
-  .sponsor-cta { margin-top:40px; padding-top:36px; border-top:1px solid var(--border); display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  .sponsor-cta { margin-top:40px; padding-top:36px; border-top:1px solid var(--border); display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; }
   .sponsor-cta p { color:rgba(200,232,255,0.6); font-size:clamp(12px,1.3vw,14px); max-width:420px; line-height:1.8; }
   .sponsor-split { display:flex; flex-direction:column; gap:30px; }
   .sponsor-image-links {
   display:grid;
-  grid-template-columns:repeat(2, 220px);
+  grid-template-columns:repeat(2, 240px);
   gap:14px;
   }
   .sponsor-image-link {
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--card);       
+  background:#ffffff;
   border:1px solid var(--border);
-  height:130px;
-  padding:18px 28px;
+  border-radius:8px;
+  width:240px;
+  height:140px;
+  padding:22px;
   overflow:hidden;
   transition:border-color .3s, transform .3s;
   text-decoration:none;
@@ -263,9 +266,10 @@
   height:auto;
   object-fit:contain;
   display:block;
-  background:#ffffff;          
-  padding:10px;                 
-  border-radius:6px;
+}
+@media(max-width:600px){
+  .sponsor-image-links { grid-template-columns:repeat(2, 1fr); }
+  .sponsor-image-link { width:100%; }
 }
   /* ── STAFF ── */
   #staff { background:linear-gradient(180deg,var(--dark2) 0%,#031226 100%); }
@@ -576,13 +580,12 @@
   </div>
 
   <p class="cfp-intro reveal">
-    只要與機器人（Robotics）技術、應用、實務開發或產業趨勢相關，皆歡迎踴躍投稿。
+    只要與機器人（Robotics）技術、應用、實務開發或產業趨勢相關，皆歡迎踴躍投稿。<br>
     我們期待看到來自各領域的原創研究、實作分享與產業洞見。
   </p>
 
   <!-- Topics -->
   <div class="reveal">
-    <div class="cfp-section-label">// 收錄範圍涵蓋但不限於：</div>
     <div class="cfp-section-label">// 誠摯邀請對象</div>
     <div class="audience-grid">
       <div class="audience-card">
@@ -654,7 +657,7 @@
 <!-- SPONSORS PLAN -->
 <section id="sponsors">
   <div class="reveal">
-    <div class="section-tag">// SPONSORS</div>
+    <div class="section-tag">// Sponsorship Package</div>
     <h2 class="section-title">贊助方案</h2>
   </div>
   <div class="reveal sponsor-split">
@@ -709,7 +712,7 @@
   <div class="sponsor-cta">
     <div style="flex:1;min-width:260px;">
       <p style="margin-bottom:20px;">想讓您的品牌出現在台灣機器人年會中曝光嗎？歡迎儘早洽談合作。</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
         <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           簡文昱
@@ -723,9 +726,7 @@
           leochien1110@gmail.com
         </div>
       </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:12px;align-self:flex-end;">
-      <a href="sponsor-checklist.pdf" download class="btn-outline" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;">
+      <a href="https://tw-robo.github.io/tw-robocon-2026/sponsor-checklist.pdf" download class="btn-outline" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;">
         下載贊助手冊 PDF
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       </a>
@@ -735,6 +736,7 @@
 
 <section id="sponsor-partners" style="background:var(--dark2);padding-top:0;">
   <div class="reveal">
+    <div class="section-tag">// Sponsors</div>
     <h2 class="section-title">贊助單位</h2>
   </div>
   <div class="reveal sponsor-split">
