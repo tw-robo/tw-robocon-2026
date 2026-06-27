@@ -237,6 +237,38 @@
   .sponsor-logo:hover { border-color:var(--green); color:var(--green); }
   .sponsor-cta { margin-top:40px; padding-top:36px; border-top:1px solid var(--border); display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
   .sponsor-cta p { color:rgba(200,232,255,0.6); font-size:clamp(12px,1.3vw,14px); max-width:420px; line-height:1.8; }
+  .sponsor-split { display:flex; flex-direction:column; gap:30px; }
+  .sponsor-image-links {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:14px;
+  }
+  .sponsor-image-link {
+    display:block;
+    background:var(--card);
+    border:1px solid var(--border);
+    overflow:hidden;
+    transition:border-color .3s, transform .3s;
+    text-decoration:none;
+  }
+  .sponsor-image-link:hover {
+    border-color:var(--green);
+    transform:translateY(-3px);
+  }
+  .sponsor-image-link img {
+    width:100%;
+    min-width: 120px;
+    height: "auto";
+    object-fit:cover;
+    display:block;
+  }
+  .sponsor-image-link span {
+    display:block;
+    padding:10px 12px;
+    font-size:12px;
+    letter-spacing:1px;
+    color:rgba(200,232,255,0.8);
+  }
 
   /* ── FOOTER ── */
   footer {
@@ -501,32 +533,6 @@
   <!-- Topics -->
   <div class="reveal">
     <div class="cfp-section-label">// 收錄範圍涵蓋但不限於：</div>
-    <div class="cfp-topics">
-      <div class="cfp-topic">
-        <span class="cfp-topic-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
-        <span>傳統控制理論與現代機構設計</span>
-      </div>
-      <div class="cfp-topic">
-        <span class="cfp-topic-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M2 12h2M20 12h2"/><path d="M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/></svg></span>
-        <span>感知相關算法、硬體加速與應用</span>
-      </div>
-      <div class="cfp-topic">
-        <span class="cfp-topic-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="8" rx="1"/><path d="M12 10v4M8 14h8M5 18h14a1 1 0 0 1 0 4H5a1 1 0 0 1 0-4z"/><line x1="9" y1="5" x2="9" y2="9"/><line x1="15" y1="5" x2="15" y2="9"/></svg></span>
-        <span>實體機器人系統架構與跨領域整合<br><span style="font-size:11px;color:rgba(200,232,255,.4)">Robot Arm · Legged · AMR · Humanoid · Drone</span></span>
-      </div>
-      <div class="cfp-topic">
-        <span class="cfp-topic-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-        <span>前後端應用軟體、通訊協定與開源架構<br><span style="font-size:11px;color:rgba(200,232,255,.4)">ROS2 · DDS · LeRobot · Isaac Sim · EtherCAT</span></span>
-      </div>
-      <div class="cfp-topic">
-        <span class="cfp-topic-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 6-4 9H9c-1-3-4-5-4-9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="23" x2="14" y2="23"/></svg></span>
-        <span>前沿 Learning-Based 控制策略與 Physical AI 模型</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Audience -->
-  <div class="reveal">
     <div class="cfp-section-label">// 誠摯邀請對象</div>
     <div class="audience-grid">
       <div class="audience-card">
@@ -595,13 +601,13 @@
 
 <div class="glow-divider"></div>
 
-<!-- SPONSORS -->
+<!-- SPONSORS PLAN -->
 <section id="sponsors">
   <div class="reveal">
     <div class="section-tag">// SPONSORS</div>
-    <h2 class="section-title">贊助夥伴</h2>
+    <h2 class="section-title">贊助方案</h2>
   </div>
-  <div class="reveal">
+  <div class="reveal sponsor-split">
     <!-- Sponsor Tiers -->
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:48px;">
       <!-- 大筆贊助 -->
@@ -648,31 +654,47 @@
         </ul>
       </div>
     </div>
+  </div>
 
-    <div class="sponsor-cta">
-      <div style="flex:1;min-width:260px;">
-        <p style="margin-bottom:20px;">想讓您的品牌出現在台灣機器人年會中曝光嗎？歡迎儘早洽談合作。</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            簡文昱
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-            0922-365-286
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            leochien1110@gmail.com
-          </div>
+  <div class="sponsor-cta">
+    <div style="flex:1;min-width:260px;">
+      <p style="margin-bottom:20px;">想讓您的品牌出現在台灣機器人年會中曝光嗎？歡迎儘早洽談合作。</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          簡文昱
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+          0922-365-286
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:clamp(13px,1.4vw,15px);color:#e8f4ff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          leochien1110@gmail.com
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:12px;align-self:flex-end;">
-        <a href="sponsor-checklist.pdf" download class="btn-outline" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;">
-          下載贊助手冊 PDF
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </a>
-      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-self:flex-end;">
+      <a href="sponsor-checklist.pdf" download class="btn-outline" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;">
+        下載贊助手冊 PDF
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="sponsor-partners" style="background:var(--dark2);padding-top:0;">
+  <div class="reveal">
+    <h2 class="section-title">贊助夥伴</h2>
+  </div>
+  <div class="reveal sponsor-split">
+    <div class="sponsor-image-links">
+      <a class="sponsor-image-link" href="https://www.tairoa.org.tw/" target="_blank" rel="noopener noreferrer">
+        <img src="https://www.tairoa.org.tw/images/header_logo.jpg" alt="Sponsor 1" loading="lazy">
+      </a>
+      <a class="sponsor-image-link" href="https://www.itri.org.tw/" target="_blank" rel="noopener noreferrer">
+        <img src="https://itrisdgs.itri.org.tw/chi/images/logo-invert.svg" alt="Sponsor 2" loading="lazy">
+      </a>
     </div>
   </div>
 </section>
