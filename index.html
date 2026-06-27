@@ -244,31 +244,29 @@
     gap:14px;
   }
   .sponsor-image-link {
-    display:block;
-    background:var(--card);
-    border:1px solid var(--border);
-    overflow:hidden;
-    transition:border-color .3s, transform .3s;
-    text-decoration:none;
-  }
-  .sponsor-image-link:hover {
-    border-color:var(--green);
-    transform:translateY(-3px);
-  }
-  .sponsor-image-link img {
-    width:100%;
-    min-width: 120px;
-    height: "auto";
-    object-fit:cover;
-    display:block;
-  }
-  .sponsor-image-link span {
-    display:block;
-    padding:10px 12px;
-    font-size:12px;
-    letter-spacing:1px;
-    color:rgba(200,232,255,0.8);
-  }
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--card);       
+  border:1px solid var(--border);
+  height:130px;
+  padding:18px 28px;
+  overflow:hidden;
+  transition:border-color .3s, transform .3s;
+  text-decoration:none;
+}
+.sponsor-image-link:hover { border-color:var(--green); transform:translateY(-3px); }
+.sponsor-image-link img {
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  background:#ffffff;          
+  padding:10px;                 
+  border-radius:6px;
+}
   /* ── STAFF ── */
   #staff { background:linear-gradient(180deg,var(--dark2) 0%,#031226 100%); }
   .staff-sheet {
@@ -794,7 +792,7 @@
 <footer>
   <div class="logo">台灣機器人社群 · TRC 2026</div>
   <p>2026.08.22 · 南港展覽館一館</p>
-  <p>contact@taiwanrobotics.community</p>
+  <p>tw.robo.cmty@gmail.com</p>
 </footer>
 
 <script>
